@@ -15,7 +15,7 @@
             "Tests\\": "tests/"
         }
     },
-    "type": "package",
+    "type": "library",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
