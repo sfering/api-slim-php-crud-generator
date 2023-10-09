@@ -23,7 +23,7 @@ class CrudGeneratorService
         $this->updateServices2();
         $this->updateRepository2();
         $this->updateRepository3($table);
-        $this->generateIntegrationTests($entity);
+        $this->generateIntegrationTests($table);
     }
 
     private function getBaseInsertQueryFunction($table)
@@ -154,7 +154,7 @@ $container[\''.$this->entity.'_service\'] = static function (Pimple\Container $c
         file_put_contents($target, $repositoryDataUpdate);
     }
 
-    private function generateIntegrationTests($entity)
+    private function generateIntegrationTests($table)
     {
         $source = __DIR__ . '/../Command/TemplateBase/ObjectbaseTest.php';
         $target = __DIR__ . '/../../../../../tests/integration/' . $this->entityUpper . 'Test.php';
@@ -162,7 +162,7 @@ $container[\''.$this->entity.'_service\'] = static function (Pimple\Container $c
         $entityTests = file_get_contents($target);
         $testsData1 = preg_replace("/".'Objectbase'."/", $this->entityUpper, $entityTests);
         $testsData2 = preg_replace("/".'objectbase'."/", $this->entity, $testsData1);
-        $testsData3 = preg_replace("/".'#postParams'."/", $entity->list6, $testsData2);
+        $testsData3 = preg_replace("/".'#postParams'."/", $table->list6, $testsData2);
         file_put_contents($target, $testsData3);
     }
 
