@@ -18,11 +18,11 @@ final class ObjectbaseRepository
         return $this->database;
     }
 
-    public function checkAndGet(int $objectbaseId): object
+    public function checkAndGet(int $id): object
     {
         $query = 'SELECT * FROM `objectbase` WHERE `id` = :id';
         $statement = $this->getDb()->prepare($query);
-        $statement->bindParam('id', $objectbaseId);
+        $statement->bindParam('id', $id);
         $statement->execute();
         $objectbase = $statement->fetchObject();
         if (! $objectbase) {
@@ -51,11 +51,11 @@ final class ObjectbaseRepository
         #updateFunction
     }
 
-    public function delete(int $objectbaseId): void
+    public function delete(int $id): void
     {
         $query = 'DELETE FROM `objectbase` WHERE `id` = :id';
         $statement = $this->getDb()->prepare($query);
-        $statement->bindParam('id', $objectbaseId);
+        $statement->bindParam('id', $id);
         $statement->execute();
     }
 }
