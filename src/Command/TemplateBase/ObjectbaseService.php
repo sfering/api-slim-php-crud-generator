@@ -15,9 +15,9 @@ final class ObjectbaseService
         $this->objectbaseRepository = $objectbaseRepository;
     }
 
-    public function checkAndGet(int $objectbaseId): object
+    public function checkAndGet(int $id): object
     {
-        return $this->objectbaseRepository->checkAndGet($objectbaseId);
+        return $this->objectbaseRepository->checkAndGet($id);
     }
 
     public function getAll(): array
@@ -25,9 +25,9 @@ final class ObjectbaseService
         return $this->objectbaseRepository->getAll();
     }
 
-    public function getOne(int $objectbaseId): object
+    public function getOne(int $id): object
     {
-        return $this->checkAndGet($objectbaseId);
+        return $this->checkAndGet($id);
     }
 
     public function create(array $input): object
@@ -37,17 +37,17 @@ final class ObjectbaseService
         return $this->objectbaseRepository->create($objectbase);
     }
 
-    public function update(array $input, int $objectbaseId): object
+    public function update(array $input, int $id): object
     {
-        $objectbase = $this->checkAndGet($objectbaseId);
+        $objectbase = $this->checkAndGet($id);
         $data = json_decode((string) json_encode($input), false);
 
         return $this->objectbaseRepository->update($objectbase, $data);
     }
 
-    public function delete(int $objectbaseId): void
+    public function delete(int $id): void
     {
-        $this->checkAndGet($objectbaseId);
-        $this->objectbaseRepository->delete($objectbaseId);
+        $this->checkAndGet($id);
+        $this->objectbaseRepository->delete($id);
     }
 }
